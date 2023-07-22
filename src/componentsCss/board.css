@@ -1,0 +1,39 @@
+.board {
+    display: grid;
+    grid-template-columns: repeat(10, 2.5rem);
+
+    width: 25rem;
+    height: 25rem;
+    background-color: cadetblue;
+    border: 1px solid black;
+}
+
+
+
+.cell {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: beige;
+    border: 1px solid black;
+    cursor: pointer;  
+}
+
+.board-computer {
+   
+        display: grid;
+        grid-template-columns: repeat(10, 2.5rem);
+    
+        width: 25rem;
+        height: 25rem;
+        background-color: cadetblue;
+        border: 1px solid black;
+    
+}
+
+.cell-computer {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: beige;
+    border: 1px solid black;
+    cursor: pointer;  
+}
