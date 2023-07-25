@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
 import React from 'react'
 import Cell from './Cell'
-
-import '../componentsCss/board.css'
-import { useState, useEffect } from 'react';
 import BoardComputer from './BoardComputer';
+import useRandomShipsGenerator from '../hook/useRandomShipsGenerator';
+import '../componentsCss/board.css'
+
+import Swal from 'sweetalert2';
 
 const Board = () => {
 
@@ -27,69 +29,10 @@ const Board = () => {
     const [computerAttacks, setComputerAttacks] = useState([]);
 
 
-    const generateRandomShips = (board, setBoard) => {
-
-        if (board.some((cell) => cell.hasShip)) {
-
-            return;
-        }
 
 
-        const shipLengths = [5, 4, 3, 3, 2];
-        let newBoard = [...board];
-
-        for (const shipLength of shipLengths) {
-            let isShipPlaced = false;
-            while (!isShipPlaced) {
-
-                const orientation = Math.floor(Math.random() * 2);
-
-
-                const startCellIndex = Math.floor(Math.random() * 100);
-                const startCellRow = Math.floor(startCellIndex / 10);
-                const startCellCol = startCellIndex % 10;
-
-
-                let canBePlaced = true;
-                for (let i = 0; i < shipLength; i++) {
-                    const cellRow =
-                        orientation === 0 ? startCellRow : startCellRow + i;
-                    const cellCol =
-                        orientation === 1 ? startCellCol : startCellCol + i;
-                    if (
-                        cellRow >= 10 ||
-                        cellCol >= 10 ||
-                        newBoard[cellRow * 10 + cellCol].hasShip
-                    ) {
-                        canBePlaced = false;
-                        break;
-                    }
-                }
-
-
-                if (canBePlaced) {
-                    for (let i = 0; i < shipLength; i++) {
-                        const cellRow =
-                            orientation === 0 ? startCellRow : startCellRow + i;
-                        const cellCol =
-                            orientation === 1 ? startCellCol : startCellCol + i;
-                        newBoard[cellRow * 10 + cellCol].hasShip = true;
-                    }
-                    isShipPlaced = true;
-                }
-            }
-        }
-
-        setBoard(newBoard);
-    };
-
-    // ...
-
-    useEffect(() => {
-        generateRandomShips(computerBoard, setComputerBoard);
-    }, []);
-
-
+    // Se usa funcion importada 
+    useRandomShipsGenerator(computerBoard, setComputerBoard);
 
     const handleCellClick = (index) => {
         if (numShips >= 5) {
@@ -121,12 +64,13 @@ const Board = () => {
     }
 
 
+    // Funcion que se encarga de establecer las alertas si gana o pierde
     const checkGameStatus = () => {
 
         const playerLost = playerBoard.every((cell) => !cell.hasShip || cell.isHit);
 
         if (playerLost) {
-            alert('Perdiste');
+            Swal.fire('Perdiste, ¡reinicia y vuelve a jugar!');
             return;
         }
 
@@ -134,16 +78,16 @@ const Board = () => {
         const playerWon = computerBoard.every((cell) => !cell.hasShip || cell.isHit);
 
         if (playerWon) {
-            alert('Ganaste');
+            Swal.fire('Ganaste, ¡reinicia y vuelve a jugar!');
             return;
         }
     };
 
 
     const handleComputerCellClick = (index) => {
-        // Verificar si la celda ya ha sido atacada
+
         if (computerBoard[index].isAttacked) {
-            // Si la celda ya ha sido atacada, salir de la función
+
             return;
         }
 
@@ -184,6 +128,50 @@ const Board = () => {
     };
 
 
+    //Restablece los valores y se llama a la funcion generateRandomShips para que genere los barcos alatorios
+    const handleRestart = () => {
+
+        Swal.fire({
+            icon: 'question',
+            title: 'Alerta',
+            text: '¿Quieres volver a jugar?',
+            showDenyButton: true,
+            denyButtonAriaLabel: 'No',
+            confirmButtonText: 'si'
+
+        }).then(response => {
+            if (response.isConfirmed) {
+
+                setPlayerBoard(
+                    Array.from({ length: 100 }, (_, index) => ({
+                        id: index,
+                        hasShip: false,
+                    }))
+                );
+                setComputerBoard(
+                    Array.from({ length: 100 }, (_, index) => ({
+                        id: index,
+                        hasShip: false,
+
+                    }))
+                );
+
+                setNumShips(0);
+                setCurrentShipLength(0);
+                setPlayerAttacks([]);
+                setComputerAttacks([]);
+            } else if (response.isDenied) {
+                Swal.fire('Puedes volver a jugar cuando quieras :)')
+            }
+        })
+
+
+
+
+
+    };
+
+
 
     return (
         <>
@@ -193,6 +181,7 @@ const Board = () => {
                     {numShips >= 5 ? 'Ya no se pueden poner más barcos' : 'Colocar nuevo barco'}
 
                 </button>
+                <button className='m-3 btn btn-light' onClick={handleRestart}>Reiniciar</button>
                 <div className='board'>
 
                     {playerBoard.map((cellData, index) => (
