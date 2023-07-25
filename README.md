@@ -1,70 +1,20 @@
-# Getting Started with Create React App
+# Tutorial para correr el proyecto 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tecnologias y librerias que se usaron:
+- React
+- bootstrap 5
+- sweetalert2
+- Html
+- Css
 
-## Available Scripts
+### ¿Cómo correr el proyecto?
+Se deve instalar la libreria de SweetAlert2 para poder ver las alertas.
+como se uso React para correr el proyecto debe usar npm start.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### ¿Cómo jugar?
+battleship es un juego de ataque por turnos donde el objetivo es undir los barcos del enemigo.
+1. Para iniciar debe colocar sus barcos en la tabla del jugador se permiten 5 barcos con 4 casillas de largo (que es el largo del barco).
+2. Cada vez que coloque un barco debe hacer click en el boton 'Colocar nuevo barco' ya que esto establece la longitud del barco a 0 y permite colocar otro barco, una vez colocado los 5 barco el botón se deshabilita.
+3. Una vez Establecido sus barcos y su estrategia es hora de atacar!!! Cada vez que haga click las casillas del tablero de la computadora se capturara el evento de atacar, donde se pintara verde si no hay barcos y  rojo si es que hay uno.
+4. Si es que gana o pierde saltara una alerta avisando el resultado.
+5. Tiene la opción de poder volver a jugar apretando en el boton reiniciar.
