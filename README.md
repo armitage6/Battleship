@@ -1,7 +1,7 @@
 # Tutorial para correr el proyecto 
 
 ## Tecnologias y librerias que se usaron:
-- React
+- JavaScript con React
 - bootstrap 5
 - sweetalert2
 - Html
