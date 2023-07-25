@@ -8,7 +8,7 @@
 - Css
 
 ### ¿Cómo correr el proyecto?
-Se deve instalar la libreria de SweetAlert2 para poder ver las alertas.
+Se debe instalar la libreria de SweetAlert2 para poder ver las alertas.
 como se uso React para correr el proyecto debe usar npm start.
 
 ### ¿Cómo jugar?
